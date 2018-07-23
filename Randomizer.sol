@@ -7,7 +7,7 @@
 pragma solidity ^0.4.24;
 
 // to use with remixd with mount point at the same level of Blockduino repos
-import "localhost/contracts/BlockduinoSDK.sol";
+import "https://github.com/Blockduino/Contracts/BlockduinoSDK.sol";
 
 /*
  * Example of using a Blockduino board used to obtain a true random number generated
