@@ -29,15 +29,16 @@ contract Randomizer is usingBlockduinoSDK {
     string public randomNumber;         // last random number generated
     bytes32 public randomNumberBytes;   // last random bytes sequence received
     int public lastError;               // Blockduino error status returned
-    uint public RNG_FEE = 0.02 ether;    // payment for operating the hardware RNG
-    
+    uint public RNG_FEE = 0.02 ether;   // payment for operating the hardware RNG
+    uint256 public req_value;           // actual amount paid to the device account
+
     /* 
      * Deploy this contract passing the address of the Blockduino core contract and the
      * address of Blockduino device controlling the hardware RNG.
      */
 	constructor (address BDcontract, address BDboard) usingBlockduinoSDK(BDcontract, msg.sender) public payable {
-        // the constructor is payable so that funds can be sent to it at Deploy
-        // funds are needed to pay for gas of transfer functions
+        // the constructor is payable so that funds can be sent to it at Deploy time
+        // funds are needed in the contract to pay for gas of transfer functions 
         owner = msg.sender;
         device = BDboard;
     }
@@ -45,8 +46,6 @@ contract Randomizer is usingBlockduinoSDK {
     // fallback function
     function() public payable {} // fallback must be payable for the contract to take a payment
 
-    uint256 public req_value;   
-    uint256 public msg_value;   // debugging
 
     function bytes32ToString(bytes32 x) pure private returns (string) {
         bytes memory bytesString = new bytes(32);
@@ -95,10 +94,8 @@ contract Randomizer is usingBlockduinoSDK {
 	    // check payment sent to the contract
     	require(msg.value >= RNG_FEE, "fee paid below minimum");
     	
-    	msg_value = msg.value;
-    	
     	// keep some gas for the RPC request to use in the response
-    	req_value = RNG_FEE - BD_MINFEE ; // msg.value;
+    	req_value =  msg.value - BD_MINFEE ; 
     	
     	// send the payment for operating the hardware RNF to the Blockduino wallet
     	device.transfer(req_value);
