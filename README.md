@@ -1,7 +1,7 @@
 # Randomizer
 #### A random number beacon on the Ethereum blockchain based on Blockduino. 
 
-This contract is an example of how to use a Blockduino board and the Blockduino SDK to execute a function and receive a payment for performing. It shows how to make available to an Ethereum contract the _paid_ services of a [TrueRNG Pro](http://ubld.it/products/truerngpro) device connected to the Blockduino USB serial connection.
+This contract is an example of how to use a Blockduino board and the Blockduino SDK to execute a function and receive a payment for successfully performing it. It shows how to make available to an Ethereum contract the _paid_ services of a [TrueRNG Pro](http://ubld.it/products/truerngpro) device connected to the Blockduino USB serial connection.
 
 ### Deployment
 The contract is deployed providing the adress of the core Blockduino contract and the address of the Blockduino board Ethereum account. That is the board used to generate random numbers from the TrueRNG device.
@@ -18,7 +18,10 @@ After the request is sent to the Blockduino board and the transaction is mined, 
 The TrueRNG device generates a stream of full-entropy bit-strings that is readable through the USB serial port. 
 
 ### Current Status
-As of Q3 2018 the Blockduino board is not yet available. Software to emulate functions of the Blockduino board and to use the Blockduino SDK is available in the Raspberry PI repo.
+As of Q3 2018 the Blockduino board is still under development and not yet available. Software to emulate functions of the Blockduino board, and to use the [Blockduino SDK](https://github.com/Blockduino/Contracts) is available in the Blockduino [Raspberry PI repo](https://github.com/Blockduino/RaspberryPI).
+
+A Blockduino core contract is deployed on the Ropsten testnet at the address:
+`0xc859b2826d7c39a5cca1f651c053523b45aba64f`
 
 ### Remote Attestation
 In its final version, the Blockduino board will provide remote attestation with every response to a request. With remote attestation, a Blockduino device authenticates its hardware and software configuration to a remote host. The goal of remote attestation is to enable contract sending the request to determine the level of trust in the integrity of the platform running on the Blockduino device.
