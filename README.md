@@ -24,7 +24,7 @@ A Blockduino core contract is deployed on the Ropsten testnet at the address:
 `0xc859b2826d7c39a5cca1f651c053523b45aba64f`
 
 ### Remote Attestation
-In its final version, the Blockduino board will provide remote attestation with every response to a request. With remote attestation, a Blockduino device authenticates its hardware and software configuration to a remote host. The goal of remote attestation is to enable contract sending the request to determine the level of trust in the integrity of the platform running on the Blockduino device.
+In its final version, the Blockduino board will provide remote attestation with every response to a request. With remote attestation, a Blockduino device authenticates its hardware and software configuration to a remote host. The goal of remote attestation is to enable the contract sending the request to determine the level of trust in the integrity of the platform running on the Blockduino device.
 
 > This feature is not available for the Raspberry PI hardware or in any hardware that does not provide a Trusted Execution Environment.
 
