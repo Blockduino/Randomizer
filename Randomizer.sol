@@ -6,7 +6,7 @@ pragma solidity ^0.4.24;
 import "https://github.com/Blockduino/Contracts/BlockduinoSDK.sol";
 
 // to use with remixd with mount point at the same level of Blockduino repos:
-// import localhost/contracts/BlockduinoSDK.sol;
+// import "localhost/contracts/BlockduinoSDK.sol";
 
 /// @title A random number generator using a TrueRNG device controlled by a Blockduino board 
 /// @notice This is a contract showing the use of the BlockduinoSDK
@@ -83,8 +83,8 @@ contract Randomizer is usingBlockduinoSDK {
         // check payment sent to the contract
         require(msg.value >= RNG_FEE, "fee paid below minimum");
         
-        // keep some gas for the RPC request to use in the response
-        req_value =  msg.value - BD_MINFEE ; 
+        // the Blockduino device will use some gas for the RPC request to use in the response
+        req_value =  msg.value;
         
         // send the payment for operating the hardware RNF to the Blockduino wallet
         device.transfer(req_value);
